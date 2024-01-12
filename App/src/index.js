@@ -1,1 +1,1 @@
-console.log('nolatrae')
+import '@/styles/global.scss'
