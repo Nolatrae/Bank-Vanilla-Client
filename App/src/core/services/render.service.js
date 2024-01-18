@@ -7,7 +7,7 @@ class RenderService {
 	 * @param {Object} [styles]
 	 * @returns {HTMLElement}
 	 */
-	htmlToElement(html, components, styles) {
+	htmlToElement(html, components = [], styles) {
 		const template = document.createElement('template')
 		template.innerHTML = html.trim()
 
@@ -21,6 +21,7 @@ class RenderService {
 
 		return element
 	}
+
 	/**
 	 * @param {HTMLElement} parentElement
 	 * @param {Array} components
@@ -57,6 +58,7 @@ class RenderService {
 			}
 		}
 	}
+
 	/**
 	 * @param {Object} moduleStyles
 	 * @param {string} element
@@ -78,7 +80,7 @@ class RenderService {
 			applyStyles(element)
 		}
 
-		const elements = document.querySelectorAll('*')
+		const elements = element.querySelectorAll('*')
 		elements.forEach(applyStyles)
 	}
 }
