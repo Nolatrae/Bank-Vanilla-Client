@@ -1,7 +1,7 @@
 import ChildComponent from '@/core/component/child.component'
+import { $R } from '@/core/rquery/rquery.lib'
 import renderService from '@/core/services/render.service'
 
-import { $R } from '@/core/rquery/rquery.lib'
 import styles from './loader.module.scss'
 import template from './loader.template.html'
 
@@ -14,6 +14,7 @@ export class Loader extends ChildComponent {
 		this.width = width
 		this.height = height
 	}
+
 	render() {
 		this.element = renderService.htmlToElement(template, [], styles)
 

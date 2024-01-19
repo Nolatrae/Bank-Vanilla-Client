@@ -8,6 +8,7 @@ import template from './field.template.html'
 export class Field extends ChildComponent {
 	constructor({ placeholder, type = 'text', value = '', name, variant }) {
 		super()
+
 		if (!name) throw new Error('Please fill field "name"!')
 
 		this.placeholder = placeholder

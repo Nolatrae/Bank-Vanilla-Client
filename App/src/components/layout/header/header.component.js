@@ -2,8 +2,10 @@ import ChildComponent from '@/core/component/child.component'
 import renderService from '@/core/services/render.service'
 
 import { UserItem } from '@/components/ui/user-item/user-item.component'
+
 import styles from './header.module.scss'
 import template from './header.template.html'
+
 import { Logo } from './logo/logo.component'
 import { LogoutButton } from './logout-button/logout-button.component'
 import { Search } from './search/search.component'
@@ -13,6 +15,7 @@ export class Header extends ChildComponent {
 		super()
 		this.router = router
 	}
+
 	render() {
 		this.element = renderService.htmlToElement(
 			template,
@@ -24,8 +27,8 @@ export class Header extends ChildComponent {
 				Search,
 				new UserItem({
 					avatarPath:
-						'https://avatars.mds.yandex.net/i?id=0976eca1c1d31153e1067dcd43fd24ed8cadbc30-9855166-images-thumbs&n=13',
-					name: 'Egor'
+						'https://prisma-blog-ebon.vercel.app/blog/posts/type-safe_js_with_JsDoc.png',
+					name: 'Max'
 				})
 			],
 			styles

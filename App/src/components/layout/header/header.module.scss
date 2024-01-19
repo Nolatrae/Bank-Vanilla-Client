@@ -1,4 +1,4 @@
-@import 'src/styles/_mixins.scss';
+@import 'src/styles/mixins';
 
 .header {
 	@include flex-horizontal-center;

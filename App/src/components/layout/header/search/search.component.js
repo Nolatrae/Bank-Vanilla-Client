@@ -1,7 +1,7 @@
 import ChildComponent from '@/core/component/child.component'
+import { $R } from '@/core/rquery/rquery.lib'
 import renderService from '@/core/services/render.service'
 
-import { $R } from '@/core/rquery/rquery.lib'
 import styles from './search.module.scss'
 import template from './search.template.html'
 
