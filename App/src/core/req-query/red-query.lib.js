@@ -1,4 +1,5 @@
 import { SERVER_URL } from '@/config/url.config'
+
 import { extractErrorMessage } from './extract-error-message'
 
 /**
@@ -22,24 +23,25 @@ export async function redQuery({
 	onError = null,
 	onSuccess = null
 }) {
-	let isLoading = true
-	let error = null
-	let data = null
-	let url = `${SERVER_URL}/api${path}`
+	let isLoading = true,
+		error = null,
+		data = null
+	const url = `${SERVER_URL}/api${path}`
 
-	/* ACCESS TOKEN from LS */
-	accessToken = ''
+	/* ACCESS_TOKEN from LS */
+	const accessToken = ''
 
 	const requestOptions = {
 		method,
 		headers: {
-			'Content-type': 'application/json',
+			'Content-Type': 'application/json',
 			...headers
 		}
 	}
 
-	if (accessToken)
+	if (accessToken) {
 		requestOptions.headers.Authorization = `Bearer ${accessToken}`
+	}
 
 	if (body) {
 		requestOptions.body = JSON.stringify(body)
