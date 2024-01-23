@@ -1,0 +1,66 @@
+import { redQuery } from '@/core/req-query/red-query.lib'
+import { NotificationService } from '@/core/services/notification.service'
+
+export class CardService {
+	#BASE_URL = '/cards'
+
+	constructor() {
+		this.notificationService = new NotificationService()
+	}
+
+	byUser(onSuccess) {
+		return redQuery({
+			path: `${this.#BASE_URL}/by-user`,
+			onSuccess
+		})
+	}
+
+	/**
+	 * Updates the user's balance with rhe specified amount and type.
+	 * @param {number} amount - The amount to be added or withdrawn from the user's balance.
+	 * @param {'top-up' | 'withdrawal'} type - The type of the transactions, either "top-up" or "withdrawal".
+	 * @param {function} onSuccess - The callback function to be executed when the balance update is successful.
+	 * @returns {Promise} A promise object that resolves to the response from the API.
+	 */
+	updateBalance(amount, type, onSuccess) {
+		return redQuery({
+			path: `${this.#BASE_URL}/balance/${type}`,
+			method: 'PATCH',
+			body: { amount: +amount },
+			onSuccess: () => {
+				this.notificationService.show(
+					'success',
+					'Balance successfully changed!'
+				)
+				onSuccess()
+			}
+		})
+	}
+
+	/**
+	 * @function
+	 * @param {Object} body - The transfer details.
+	 * @param {number} body.amount - The amount to be transferred.
+	 * @param {string} body.toCardNumber - the recipient's card number.
+	 * @param {Function} onSuccess - the callback function to be executed upon successful transfer.
+	 * @returns {Promise} A promise that resolves with the redQuery response.
+	 */
+	transfer({ amount, toCardNumber }, onSuccess) {
+		return redQuery({
+			path: `${this.#BASE_URL}/transfer-money`,
+			method: 'PATCH',
+			body: {
+				amount: +amount
+				// fromCardNumber: this.store.user.card.number,
+				// toCardNumber
+			},
+			onSuccess: () => {
+				this.notificationService.show(
+					'success',
+					'Transfer successfully completed!'
+				)
+				onSuccess()
+			}
+		})
+	}
+}
