@@ -1,6 +1,6 @@
-import { redQuery } from '@/core/req-query/red-query.lib'
+import { redQuery } from '@/core/red-query/red-query.lib'
 
-export class TransactionsService {
+export class TransactionService {
 	#BASE_URL = '/transactions'
 
 	getAll(onSuccess) {

@@ -1,4 +1,5 @@
 import styles from '@/components/layout/notification/notification.module.scss'
+
 import { $R } from '../rquery/rquery.lib'
 
 /**
@@ -21,9 +22,9 @@ export class NotificationService {
 
 	/**
 	 * Show a notification with a specified message and type.
-	 * The notifications will automatically hide after a specified duration.
+	 * The notification will automatically hide after a specified duration.
 	 * @param {string} message - The message to be displayed in the notification.
-	 * @param {('success'|'error')} type - The type of the notifications, only 'success' or 'error' are accepted.
+	 * @param {('success'|'error')} type - The type of the notification, only 'success' or 'error' are accepted.
 	 */
 	show(type, message) {
 		if (!['success', 'error'].includes(type)) {

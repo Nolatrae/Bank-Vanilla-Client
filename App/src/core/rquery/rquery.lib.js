@@ -115,7 +115,7 @@ class RQuery {
 
 	/**
 	 * Set an event listener for the submit event of a form element.
-	 * @param {function (Event): void } onSubmit - The event listener for the form's submit event.
+	 * @param {function(Event): void} onSubmit - The event listener for the form's submit event.
 	 * @returns {RQuery} The current RQuery instance for chaining.
 	 */
 	submit(onSubmit) {
@@ -127,6 +127,8 @@ class RQuery {
 		} else {
 			throw new Error('Element must be a form')
 		}
+
+		return this
 	}
 
 	/**
@@ -197,13 +199,18 @@ class RQuery {
 	/* STYLES */
 
 	/**
-	 *
+	 * Shows the selected element by removing the 'display' style property.
+	 * @returns {RQuery} The current RQuery instance for chaining.
 	 */
 	show() {
 		this.element.style.removeProperty('display')
 		return this
 	}
 
+	/**
+	 * Hides the selected element by setting its display style to 'none'.
+	 * @returns {RQuery} The current RQuery instance for chaining.
+	 */
 	hide() {
 		this.element.style.display = 'none'
 		return this

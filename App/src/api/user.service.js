@@ -1,4 +1,4 @@
-import { redQuery } from '@/core/req-query/red-query.lib'
+import { redQuery } from '@/core/red-query/red-query.lib'
 
 export class UserService {
 	#BASE_URL = '/users'
@@ -7,9 +7,9 @@ export class UserService {
 		return redQuery({
 			path: `${this.#BASE_URL}${
 				searchTerm
-					? `${new URLSearchParams({
+					? `?${new URLSearchParams({
 							searchTerm
-						})}`
+					  })}`
 					: ''
 			}`,
 			onSuccess

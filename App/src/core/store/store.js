@@ -1,15 +1,15 @@
 // Singleton pattern
+import { StorageService } from '../services/storage.service'
 
 import { ACCESS_TOKEN_KEY, USER_STORAGE_KEY } from '@/constants/auth.constants'
-import { StorageService } from '../services/storage.service'
 
 /**
  * Store class implements the Singleton pattern, providing a centralized storage and state management solution.
- * It manages user login/logout and notifies observes of any changes in the state
+ * It manages user login/logout and notifies observers of any changes in the state.
  */
 export class Store {
 	/**
-	 * Create a new store instance
+	 * Create a new Store instance.
 	 * @param {Object} initialState - The initial state for the store.
 	 */
 	constructor(initialState) {
@@ -38,6 +38,7 @@ export class Store {
 		if (!Store.instance) {
 			Store.instance = new Store({ user: null })
 		}
+
 		return Store.instance
 	}
 
@@ -50,7 +51,7 @@ export class Store {
 	}
 
 	/**
-	 * Remove an observer to the store's list of observers.
+	 * Remove an observer from the store's list of observers.
 	 * @param {Object} observer - The observer object to remove.
 	 */
 	removeObserver(observer) {
@@ -77,7 +78,7 @@ export class Store {
 	}
 
 	/**
-	 * Log out the user, update the state and remove the user from the storage service.
+	 * Log out the user, update the state, and remove the user from the storage service.
 	 */
 	logout() {
 		this.state.user = null
@@ -87,7 +88,7 @@ export class Store {
 
 	/**
 	 * Update user card.
-	 * @param {Object} card - The card object
+	 * @param {Object} card - The card object.
 	 */
 	updateCard(card) {
 		const oldUser = this.state.user

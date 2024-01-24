@@ -1,4 +1,4 @@
-import { redQuery } from '@/core/req-query/red-query.lib'
+import { redQuery } from '@/core/red-query/red-query.lib'
 import { NotificationService } from '@/core/services/notification.service'
 import { Store } from '@/core/store/store'
 

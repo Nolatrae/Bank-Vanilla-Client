@@ -1,12 +1,14 @@
 import { BaseScreen } from '@/core/component/base-screen.component'
-import renderService from '@/core/services/render.service'
-
-import { AuthService } from '@/api/auth.service'
-import { Button } from '@/components/ui/button/button.component'
-import { Field } from '@/components/ui/field/field.component'
 import { $R } from '@/core/rquery/rquery.lib'
 import formService from '@/core/services/form.service'
+import renderService from '@/core/services/render.service'
 import validationService from '@/core/services/validation.service'
+
+import { Button } from '@/components/ui/button/button.component'
+import { Field } from '@/components/ui/field/field.component'
+
+import { AuthService } from '@/api/auth.service'
+
 import styles from './auth.module.scss'
 import template from './auth.template.html'
 
@@ -43,6 +45,7 @@ export class Auth extends BaseScreen {
 
 	#changeFormType = event => {
 		event.preventDefault()
+
 		$R(this.element)
 			.find('h1')
 			.text(this.#isTypeLogin ? 'Register' : 'Sign In')
