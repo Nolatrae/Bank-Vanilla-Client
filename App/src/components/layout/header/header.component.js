@@ -21,7 +21,7 @@ export class Header extends ChildComponent {
 
 		this.router = router
 
-		this.UserItem = new UserItem({
+		this.userItem = new UserItem({
 			avatarPath: '/',
 			name: 'Egor'
 		})
@@ -34,7 +34,7 @@ export class Header extends ChildComponent {
 
 		if (this.user) {
 			authSideElement.show()
-			this.UserItem.update(this.user)
+			this.userItem.update(this.user)
 			this.router.navigate('/')
 		} else {
 			authSideElement.hide()
@@ -50,7 +50,7 @@ export class Header extends ChildComponent {
 					router: this.router
 				}),
 				Search,
-				this.UserItem
+				this.userItem
 			],
 			styles
 		)

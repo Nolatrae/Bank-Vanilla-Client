@@ -112,15 +112,15 @@ class RQuery {
 	/* EVENTS */
 
 	/**
-	 * Add an event listener to the selected element for specified event type.
-	 * @param {string} eventType - The type of event to listen for
-	 * @param {function (Event): void } callback - The event listener function to execute when the event is triggered. The function will receive the event object as its argument.
-	 * @returns {RQuery} The current RQuery instance for chaining
+	 * Add an event listener to the selected element for the specified event type.
+	 * @param {string} eventType - The type of event to listen for (e.g., 'click', 'input', etc.).
+	 * @param {function(Event): void} callback - The event listener function to execute when the event is triggered. The function will receive the event object as its argument.
+	 * @returns {RQuery} The current RQuery instance for chaining.
 	 */
 	on(eventType, callback) {
 		if (typeof eventType !== 'string' || typeof callback !== 'function') {
 			throw new Error(
-				'EventType must be a string and callback must be a function'
+				'eventType must be a string and callback must be a function'
 			)
 		}
 
@@ -143,7 +143,7 @@ class RQuery {
 	/**
 	 * Gets or sets the value of an input element.
 	 * @param {string} [newValue] - The new value to set for the input element. If not provided, the method returns the current value.
-	 * @returns {string| RQuery} - if newValue is provided, returns the RQuery instance. Otherwise, returns the current value of the input element.
+	 * @return {string|RQuery} - If newValue is provided, returns the RQuery instance. Otherwise, returns the current value of the input element.
 	 */
 	value(newValue) {
 		if (typeof newValue === 'undefined') {
@@ -332,7 +332,7 @@ class RQuery {
 	 */
 	removeAttr(attrName) {
 		if (typeof attrName !== 'string') {
-			throw new Error('Attribute name must be a string')
+			throw new Error('attrName must be a string')
 		}
 
 		this.element.removeAttribute(attrName)

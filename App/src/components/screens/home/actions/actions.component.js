@@ -1,16 +1,19 @@
 import ChildComponent from '@/core/component/child.component'
-import renderService from '@/core/services/render.service'
-
-import { CardService } from '@/api/card.service'
-import { Button } from '@/components/ui/button/button.component'
-import { Field } from '@/components/ui/field/field.component'
-import { BALANCE_UPDATED } from '@/constants/event.constants'
 import { $R } from '@/core/rquery/rquery.lib'
 import { NotificationService } from '@/core/services/notification.service'
+import renderService from '@/core/services/render.service'
 import validationService from '@/core/services/validation.service'
 import { Store } from '@/core/store/store'
+
+import { Button } from '@/components/ui/button/button.component'
+import { Field } from '@/components/ui/field/field.component'
+
+import { CardService } from '@/api/card.service'
+
 import styles from './actions.module.scss'
 import template from './actions.template.html'
+
+import { BALANCE_UPDATED } from '@/constants/event.constants'
 
 export class Actions extends ChildComponent {
 	constructor() {
@@ -22,8 +25,8 @@ export class Actions extends ChildComponent {
 	}
 
 	/**
-	 *@param {Event} event - The event object from the button click event.
-	 @param {'top-up' | 'withdrawal'} type - The type of the transaction, either "top-up" or "withdrawal".
+	 * @param {Event} event - The event object from the button click event.
+	 * @param {'top-up' | 'withdrawal'} type - The type of the transaction, either "top-up" or "withdrawal".
 	 */
 	updateBalance(event, type) {
 		event.preventDefault()
@@ -66,7 +69,7 @@ export class Actions extends ChildComponent {
 		)
 
 		$R(this.element)
-			.find('#actions-buttons')
+			.find('#action-buttons')
 			.append(
 				new Button({
 					children: 'Top-up',

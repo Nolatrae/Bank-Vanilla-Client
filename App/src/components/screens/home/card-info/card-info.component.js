@@ -1,14 +1,17 @@
 import ChildComponent from '@/core/component/child.component'
-import renderService from '@/core/services/render.service'
-
-import { CardService } from '@/api/card.service'
-import { BALANCE_UPDATED } from '@/constants/event.constants'
 import { $R } from '@/core/rquery/rquery.lib'
+import renderService from '@/core/services/render.service'
 import { Store } from '@/core/store/store'
+
 import { formatCardNumber } from '@/utils/format/format-card-number'
 import { formatToCurrency } from '@/utils/format/format-to-currency'
+
+import { CardService } from '@/api/card.service'
+
 import styles from './card-info.module.scss'
 import template from './card-info.template.html'
+
+import { BALANCE_UPDATED } from '@/constants/event.constants'
 
 const CODE = '*****'
 
@@ -91,7 +94,7 @@ export class CardInfo extends ChildComponent {
 			if (data?.id) {
 				this.card = data
 				this.fillElements()
-				this.store.updateCard()
+				this.store.updateCard(data)
 			} else {
 				this.store.updateCard(null)
 			}
