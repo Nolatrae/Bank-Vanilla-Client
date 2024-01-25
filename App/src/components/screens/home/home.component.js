@@ -1,10 +1,12 @@
 import { BaseScreen } from '@/core/component/base-screen.component'
 import renderService from '@/core/services/render.service'
 
-import { Actions } from './actions/actions.component'
-import { CardInfo } from './card-info/card-info.component'
 import styles from './home.module.scss'
 import template from './home.template.html'
+
+import { Actions } from './actions/actions.component'
+import { CardInfo } from './card-info/card-info.component'
+import { Contacts } from './contacts/contacts.component'
 
 export class Home extends BaseScreen {
 	constructor() {
@@ -14,7 +16,7 @@ export class Home extends BaseScreen {
 	render() {
 		const element = renderService.htmlToElement(
 			template,
-			[CardInfo, Actions],
+			[CardInfo, Actions, Contacts],
 			styles
 		)
 
