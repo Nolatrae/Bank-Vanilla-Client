@@ -5,8 +5,9 @@ export function debounce(func, wait) {
 	return function (...args) {
 		const later = () => {
 			clearTimeout(timeout)
-			func.apply(this.args)
+			func.apply(this, args)
 		}
+
 		clearTimeout(timeout)
 		timeout = setTimeout(later, wait)
 	}
