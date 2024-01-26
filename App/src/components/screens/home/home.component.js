@@ -1,10 +1,13 @@
 import { BaseScreen } from '@/core/component/base-screen.component'
-
-import { AuthRequiredMessage } from '@/components/ui/auth-required-message/auth-required-message.component'
 import { $R } from '@/core/rquery/rquery.lib'
 import renderService from '@/core/services/render.service'
 import { Store } from '@/core/store/store'
-import { template } from 'babel-core'
+
+import { AuthRequiredMessage } from '@/components/ui/auth-required-message/auth-required-message.component'
+
+import styles from './home.module.scss'
+import template from './home.template.html'
+
 import { Actions } from './actions/actions.component'
 import { CardInfo } from './card-info/card-info.component'
 import { Contacts } from './contacts/contacts.component'

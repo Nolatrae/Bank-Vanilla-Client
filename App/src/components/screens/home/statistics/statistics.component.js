@@ -16,9 +16,9 @@ import { StatisticService } from '@/api/statistic.service'
 import styles from './statistics.module.scss'
 import template from './statistics.template.html'
 
+import { TRANSACTION_COMPLETED } from '@/constants/event.constants'
 import { CircleChart } from './circle-chart/circle-chart.component'
 import { StatisticsItem } from './statistics-item/statistics-item.component'
-import { TRANSACTION_COMPLETED } from '@/constants/event.constants'
 
 export class Statistics extends ChildComponent {
 	constructor() {
@@ -111,7 +111,7 @@ export class Statistics extends ChildComponent {
 	render() {
 		if (this.store.user) {
 			$R(this.element).append(new Loader().render())
-			this.fetchData()
+			setTimeout(() => this.fetchData(), 500)
 		}
 
 		return this.element
