@@ -1,4 +1,5 @@
 import ChildComponent from '@/core/component/child.component'
+import { $R } from '@/core/rquery/rquery.lib'
 import renderService from '@/core/services/render.service'
 
 import styles from './donut-chart.module.scss'
@@ -9,6 +10,7 @@ import template from './donut-chart.template.html'
  */
 export class DonutChart extends ChildComponent {
 	gap = 15
+
 	/**
 	 * Create a new DonutChart instance.
 	 * @param {string|HTMLElement} container - The container element (either a selector or HTMLElement) where the chart will be appended.
@@ -35,6 +37,7 @@ export class DonutChart extends ChildComponent {
 	 * Calculate the total value of all slices.
 	 * @returns {number} The total value.
 	 */
+	// вычисляет общую сумму значений сегментов.
 	#calculateTotalValue() {
 		return this.data.reduce((acc, slice) => acc + slice.value, 0)
 	}
@@ -45,6 +48,7 @@ export class DonutChart extends ChildComponent {
 	 * @param {number} radius - The radius of the circle.
 	 * @returns {number[]} The Cartesian coordinates [x, y].
 	 */
+	// преобразует полярные координаты в декартовы координаты.
 	#polarToCartesian(percentage, radius) {
 		const angleInDegrees = percentage * 3.6 - 90
 		const angleInRadians = (angleInDegrees * Math.PI) / 180
@@ -66,7 +70,6 @@ export class DonutChart extends ChildComponent {
 			'viewBox',
 			`-5 -5 ${this.size + this.gap} ${this.size + this.gap}`
 		)
-
 		return svg
 	}
 
@@ -82,7 +85,6 @@ export class DonutChart extends ChildComponent {
 				this.size / 2 + this.gap / 4
 			})`
 		)
-
 		return g
 	}
 
@@ -97,6 +99,7 @@ export class DonutChart extends ChildComponent {
 		return path
 	}
 
+	// создает элементы пути SVG для каждого сегмента диаграммы.
 	#createSvgPathElements(g) {
 		const totalValue = this.#calculateTotalValue(),
 			scale = 0.8,
@@ -135,6 +138,9 @@ export class DonutChart extends ChildComponent {
 		return svg
 	}
 
+	/**
+	 * Render Pie chart
+	 */
 	render() {
 		this.element = renderService.htmlToElement(template, [], styles)
 
