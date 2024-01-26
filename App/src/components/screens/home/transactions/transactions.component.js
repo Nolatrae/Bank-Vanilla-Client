@@ -1,18 +1,21 @@
 import ChildComponent from '@/core/component/child.component'
+import { $R } from '@/core/rquery/rquery.lib'
 import renderService from '@/core/services/render.service'
+import { Store } from '@/core/store/store'
 
-import { TransactionService } from '@/api/transaction.service'
 import { Heading } from '@/components/ui/heading/heading.component'
 import {
 	LOADER_SELECTOR,
 	Loader
 } from '@/components/ui/loader/loader.component'
-import { TRANSACTION_COMPLETED } from '@/constants/event.constants'
-import { $R } from '@/core/rquery/rquery.lib'
-import { Store } from '@/core/store/store'
-import { TransactionItem } from './transaction-item/transaction-item.component'
+
+import { TransactionService } from '@/api/transaction.service'
+
 import styles from './transactions.module.scss'
 import template from './transactions.template.html'
+
+import { TransactionItem } from './transaction-item/transaction-item.component'
+import { TRANSACTION_COMPLETED } from '@/constants/event.constants'
 
 export class Transactions extends ChildComponent {
 	constructor() {
@@ -53,18 +56,19 @@ export class Transactions extends ChildComponent {
 	fetchData() {
 		this.transactionService.getAll(data => {
 			if (!data) return
+
 			const loaderElement = this.element.querySelector(LOADER_SELECTOR)
 			if (loaderElement) loaderElement.remove()
 
-			const transactionList = $R(this.element).find('#transactions-list')
-			transactionList.text('')
+			const transactionsList = $R(this.element).find('#transactions-list')
+			transactionsList.text('')
 
 			if (data.length) {
 				for (const transaction of data.transactions) {
-					transactionList.append(new TransactionItem(transaction).render())
+					transactionsList.append(new TransactionItem(transaction).render())
 				}
 			} else {
-				transactionList.text('Transactions not found')
+				transactionsList.text('Transactions not found!')
 			}
 		})
 	}

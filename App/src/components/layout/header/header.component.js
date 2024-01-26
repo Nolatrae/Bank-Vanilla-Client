@@ -23,7 +23,7 @@ export class Header extends ChildComponent {
 
 		this.userItem = new UserItem({
 			avatarPath: '/',
-			name: 'Egor'
+			name: 'Max'
 		})
 	}
 

@@ -1,9 +1,10 @@
 import ChildComponent from '@/core/component/child.component'
+import { $R } from '@/core/rquery/rquery.lib'
 import renderService from '@/core/services/render.service'
 
-import { $R } from '@/core/rquery/rquery.lib'
 import { formatToCurrency } from '@/utils/format/format-to-currency'
 import { formatDate } from '@/utils/format/format-to-date'
+
 import styles from './transaction-item.module.scss'
 import template from './transaction-item.template.html'
 

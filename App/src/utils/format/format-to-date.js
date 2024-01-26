@@ -2,7 +2,7 @@
  * Formats a date in the "MMM DD, YYYY" format.
  *
  * @param {string} dateString The date string in the format "YYYY-MM-DDTHH:mm:ss.sssZ".
- * @returns {string} The formatted date string in the format "MMM DD, YYYY"
+ * @returns {string} The formatted date string in the format "MMM DD, YYYY".
  */
 export function formatDate(dateString) {
 	const date = new Date(dateString)
