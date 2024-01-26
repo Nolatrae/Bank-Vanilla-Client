@@ -1,16 +1,24 @@
 import ChildComponent from '@/core/component/child.component'
+import { $R } from '@/core/rquery/rquery.lib'
 import renderService from '@/core/services/render.service'
+import { Store } from '@/core/store/store'
+
+import { Heading } from '@/components/ui/heading/heading.component'
+import {
+	LOADER_SELECTOR,
+	Loader
+} from '@/components/ui/loader/loader.component'
+
+import { formatToCurrency } from '@/utils/format/format-to-currency'
 
 import { StatisticService } from '@/api/statistic.service'
-import { Heading } from '@/components/ui/heading/heading.component'
-import { Loader } from '@/components/ui/loader/loader.component'
-import { TRANSACTION_COMPLETED } from '@/constants/event.constants'
-import { $R } from '@/core/rquery/rquery.lib'
-import { Store } from '@/core/store/store'
-import { formatToCurrency } from '@/utils/format/format-to-currency'
-import { StatisticsItem } from './statistics-item/statistics-item.component'
+
 import styles from './statistics.module.scss'
 import template from './statistics.template.html'
+
+import { TRANSACTION_COMPLETED } from '@/constants/event.constants'
+import { CircleChart } from './circle-chart/circle-chart.component'
+import { StatisticsItem } from './statistics-item/statistics-item.component'
 
 export class Statistics extends ChildComponent {
 	constructor() {
@@ -23,6 +31,7 @@ export class Statistics extends ChildComponent {
 			[new Heading('Statistics')],
 			styles
 		)
+
 		this.#addListeners()
 	}
 
@@ -40,12 +49,30 @@ export class Statistics extends ChildComponent {
 		)
 	}
 
-	#onTransactionCompleted = () => {
+	#onTransactionCompleted() {
 		this.fetchData()
 	}
 
 	destroy() {
 		this.#removeListeners()
+	}
+
+	renderChart(income, expense) {
+		const total = income + expense
+		let incomePercent = (income * 100) / total,
+			expensePercent = 100 - incomePercent
+
+		if (income && !expense) {
+			incomePercent = 100
+			expensePercent = 0.1
+		}
+
+		if (!income && expense) {
+			incomePercent = 0.1
+			expensePercent = 100
+		}
+
+		return new CircleChart(incomePercent, expensePercent).render()
 	}
 
 	fetchData() {
@@ -55,13 +82,13 @@ export class Statistics extends ChildComponent {
 			const loaderElement = this.element.querySelector(LOADER_SELECTOR)
 			if (loaderElement) loaderElement.remove()
 
-			const statisticsItemElement = $R(this.element).find('#statistics-list')
-			transactionList.text('')
+			const statisticsItemsElement = $R(this.element).find('#statistics-items')
+			statisticsItemsElement.text('')
 
 			const circleChartElement = $R(this.element).find('#circle-chart')
 			circleChartElement.text('')
 
-			statisticsItemElement
+			statisticsItemsElement
 				.append(
 					new StatisticsItem(
 						'Income:',
@@ -76,6 +103,8 @@ export class Statistics extends ChildComponent {
 						'purple'
 					).render()
 				)
+
+			circleChartElement.append(this.renderChart(data[0].value, data[1].value))
 		})
 	}
 
